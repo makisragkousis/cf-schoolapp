@@ -11,6 +11,7 @@ description = 'schoolapp10-ssr'
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+        vendor = JvmVendorSpec.AMAZON
     }
 }
 
@@ -33,8 +34,10 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
 }
 
-tasks.named('test') {
+tasks.named('test', Test) {
     useJUnitPlatform()
 }
