@@ -25,7 +25,7 @@ public class Region {
 
     @Getter(AccessLevel.PACKAGE)
     @Setter(AccessLevel.NONE)
-    @OneToOne(mappedBy = "region", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
     private Set<Teacher> teachers = new HashSet<>();
 
     public Set<Teacher> getAllTeachers() {
