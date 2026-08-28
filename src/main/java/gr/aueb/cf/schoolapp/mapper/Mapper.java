@@ -39,4 +39,7 @@ public class Mapper {
         return new RoleReadOnlyDTO(role.getId(), role.getName());
     }
 
+    public UserEditDTO mapToUserEditDTO(User user) {
+        return new UserEditDTO(user.getUuid(), user.getUsername(), user.getRole().getId());
+    }
 }
