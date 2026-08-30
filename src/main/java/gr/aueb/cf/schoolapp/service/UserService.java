@@ -13,13 +13,14 @@ import gr.aueb.cf.schoolapp.repository.RoleRepository;
 import gr.aueb.cf.schoolapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -141,7 +142,18 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isUserExistsByUsername(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('VIEW_USERS')")
+    public Page<UserReadOnlyDTO> getPaginatedUsersDeletedFalse(Pageable pageable) {
+        Page<User> usersPage = userRepository.findAllByDeletedFalse(pageable);
+        log.debug("Get paginated user not deleted returned successfully page={}, size={}",
+                pageable.getPageNumber(), pageable.getPageSize());
+        return usersPage.map(mapper::mapToUserReadOnlyDTO);
     }
 }
