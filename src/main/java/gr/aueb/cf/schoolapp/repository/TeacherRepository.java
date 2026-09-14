@@ -1,7 +1,6 @@
 package gr.aueb.cf.schoolapp.repository;
 
 import gr.aueb.cf.schoolapp.model.Teacher;
-import jakarta.persistence.Entity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
