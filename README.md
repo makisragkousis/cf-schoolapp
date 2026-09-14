@@ -106,7 +106,3 @@ Contributions are welcome. Suggested workflow:
 2. Create a feature branch
 3. Add tests for new behaviour
 4. Open a PR describing your changes
-
-## Contact / Author
-Repository owner: a8anassis
-GitHub: https://github.com/a8anassis/schoolapp10-ssr
